@@ -13,13 +13,13 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #005399 0%, #0066cc 100%);
             min-height: 100vh;
             color: #333;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -42,269 +42,289 @@
             opacity: 0.9;
         }
 
-        .main-content {
+        .nav-breadcrumb {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-breadcrumb span {
+            color: #005399;
+            font-weight: 600;
+        }
+
+        .nav-breadcrumb .separator {
+            color: #ccc;
+            font-weight: normal;
+        }
+
+        .nav-breadcrumb .clickable {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .nav-breadcrumb .clickable:hover {
+            color: #ffbd18;
+        }
+
+        .main-menu {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 2fr 1fr;
             gap: 30px;
             margin-bottom: 40px;
         }
 
-        .recipe-form {
+        .menu-card {
             background: white;
             border-radius: 20px;
-            padding: 30px;
+            padding: 40px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            height: fit-content;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #555;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .add-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            width: 100%;
-        }
-
-        .add-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .recipes-display {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .filter-section {
-            margin-bottom: 25px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            border: 2px solid #667eea;
-            background: white;
-            color: #667eea;
-            border-radius: 20px;
+            text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 14px;
-            font-weight: 500;
+            border: 3px solid transparent;
         }
 
-        .filter-btn.active {
-            background: #667eea;
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffbd18;
+        }
+
+        .menu-card.primary {
+            background: linear-gradient(135deg, #005399 0%, #0066cc 100%);
             color: white;
         }
 
-        .filter-btn:hover {
-            transform: translateY(-2px);
+        .menu-card.primary:hover {
+            border-color: #ffbd18;
         }
 
-        .recipe-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        .menu-card.secondary {
+            background: white;
+            color: #005399;
+            border: 3px solid #005399;
+        }
+
+        .menu-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .menu-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .menu-card .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background: white;
             border-radius: 15px;
             padding: 25px;
-            margin-bottom: 20px;
-            border-left: 5px solid #667eea;
-            transition: transform 0.2s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 5px solid #005399;
         }
 
-        .recipe-card:hover {
+        .category-card:hover {
             transform: translateY(-3px);
+            border-left-color: #ffbd18;
         }
 
-        .recipe-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
+        .category-card h3 {
+            color: #005399;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .dish-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-3px);
+            border-color: #ffbd18;
+        }
+
+        .dish-card h4 {
+            color: #005399;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .dish-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .recipe-view {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
         }
 
         .recipe-title {
-            font-size: 1.5rem;
+            color: #005399;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .recipe-meta {
             display: flex;
-            gap: 15px;
-            font-size: 0.9rem;
-            color: #666;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
         }
 
         .recipe-meta span {
-            background: white;
-            padding: 4px 8px;
-            border-radius: 15px;
-            font-weight: 500;
-        }
-
-        .recipe-category {
-            background: #667eea !important;
-            color: white !important;
-            padding: 6px 12px;
+            background: #f8f9fa;
+            padding: 10px 20px;
             border-radius: 20px;
-            font-size: 0.8rem;
             font-weight: 600;
+            color: #005399;
         }
 
-        .recipe-content {
-            margin-top: 15px;
+        .recipe-section {
+            margin-bottom: 30px;
         }
 
-        .recipe-content h4 {
-            color: #555;
-            margin-bottom: 8px;
+        .recipe-section h3 {
+            color: #005399;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
             font-weight: 600;
-        }
-
-        .recipe-content p {
-            line-height: 1.6;
-            color: #666;
-            margin-bottom: 10px;
+            border-bottom: 2px solid #ffbd18;
+            padding-bottom: 5px;
         }
 
         .ingredients-list {
-            background: white;
-            padding: 15px;
+            background: #f8f9fa;
+            padding: 20px;
             border-radius: 10px;
-            margin: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .ingredients-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ingredients-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 1.1rem;
+        }
+
+        .ingredients-list li:last-child {
+            border-bottom: none;
+        }
+
+        .instructions-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .instructions-list ol {
+            padding-left: 20px;
+        }
+
+        .instructions-list li {
+            padding: 8px 0;
+            font-size: 1.1rem;
+            line-height: 1.5;
         }
 
         .plating-section {
-            background: #e8f4f8;
-            border: 2px solid #4dabf7;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f8ff 100%);
+            border: 2px solid #ffbd18;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
         }
 
-        .plating-section h4 {
-            color: #1971c2;
-            margin-bottom: 10px;
+        .plating-section h3 {
+            color: #005399;
+            border-bottom: 2px solid #ffbd18;
         }
 
-        .delete-btn {
-            background: #dc3545;
+        .back-btn {
+            background: #005399;
             color: white;
+            padding: 12px 25px;
             border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.2s ease;
-        }
-
-        .delete-btn:hover {
-            background: #c82333;
-        }
-
-        .no-recipes {
-            text-align: center;
-            color: #999;
-            font-style: italic;
-            padding: 40px 0;
-        }
-
-        .stats-bar {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-around;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .section-divider {
-            background: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
+            border-radius: 10px;
+            font-size: 16px;
             font-weight: 600;
-            margin: 20px 0 10px 0;
-            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
         }
 
-        .sauce-card {
-            border-left-color: #28a745;
+        .back-btn:hover {
+            background: #ffbd18;
+            color: #005399;
+        }
+
+        .hidden {
+            display: none;
         }
 
         @media (max-width: 768px) {
-            .main-content {
+            .main-menu {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
             
-            .form-row {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dishes-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -312,8 +332,13 @@
                 font-size: 2rem;
             }
 
-            .filter-section {
+            .menu-card h2 {
+                font-size: 2rem;
+            }
+
+            .recipe-meta {
                 flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -322,256 +347,315 @@
     <div class="container">
         <div class="header">
             <h1>📖 Recetario del Restaurante</h1>
-            <p>Guía completa para preparación y emplatado</p>
+            <p>Guía completa para trabajadores de cocina</p>
         </div>
 
-        <div class="stats-bar">
-            <div class="stat-item">
-                <div class="stat-number" id="totalRecipes">0</div>
-                <div class="stat-label">Total Recetas</div>
+        <div class="nav-breadcrumb" id="breadcrumb">
+            <span class="clickable" onclick="showMainMenu()">Inicio</span>
+        </div>
+
+        <!-- Menú Principal -->
+        <div id="mainMenu" class="main-menu">
+            <div class="menu-card primary" onclick="showCategories()">
+                <div class="icon">🍽️</div>
+                <h2>Recetario</h2>
+                <p>Ver todas las recetas organizadas por categorías</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" id="totalSauces">0</div>
-                <div class="stat-label">Salsas y Extras</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" id="totalDishes">0</div>
-                <div class="stat-label">Platillos</div>
+            
+            <div class="menu-card secondary" onclick="showSauces()">
+                <div class="icon">🥄</div>
+                <h2>Salsas y Extras</h2>
+                <p>Preparaciones base y complementos</p>
             </div>
         </div>
 
-        <div class="main-content">
-            <div class="recipe-form">
-                <h2 style="margin-bottom: 25px; color: #333; font-weight: 700;">Agregar Nueva Receta</h2>
-                <form id="recipeForm">
-                    <div class="form-group">
-                        <label for="recipeName">Nombre del Platillo/Salsa</label>
-                        <input type="text" id="recipeName" required placeholder="ej. Salsa Verde Especial">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="category">Categoría</label>
-                        <select id="category" required>
-                            <option value="">Seleccionar Categoría</option>
-                            <optgroup label="SALSAS Y EXTRAS">
-                                <option value="Salsas y Extras">Salsas y Extras</option>
-                            </optgroup>
-                            <optgroup label="PLATILLOS">
-                                <option value="Entradas Frías">1. Entradas Frías</option>
-                                <option value="Ceviches">2. Ceviches</option>
-                                <option value="Carpaccios y Sashimis">3. Carpaccios y Sashimis</option>
-                                <option value="Ensaladas de Mariscos">4. Ensaladas de Mariscos</option>
-                                <option value="Ostiones Depurados">5. Ostiones Depurados</option>
-                                <option value="Entradas Calientes">6. Entradas Calientes</option>
-                                <option value="Sopas">7. Sopas</option>
-                                <option value="Tacos">8. Tacos</option>
-                                <option value="Bifes de Pescado">9. Bifes de Pescado</option>
-                                <option value="Pulpos y Camarones">10. Pulpos y Camarones</option>
-                                <option value="Otros Mariscos">11. Otros Mariscos</option>
-                                <option value="Carnes">12. Carnes</option>
-                                <option value="Platillos Típicos">13. Platillos Típicos</option>
-                                <option value="Platanitos y +">14. Platanitos y +</option>
-                                <option value="Solo para Peques">15. Solo para Peques</option>
-                                <option value="Postres">16. Postres</option>
-                                <option value="Bebidas Calientes">17. Bebidas Calientes</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="servings">Porciones</label>
-                            <input type="number" id="servings" required min="1" placeholder="4">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="prepTime">Tiempo Preparación (min)</label>
-                            <input type="number" id="prepTime" required min="1" placeholder="15">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="ingredients">Ingredientes</label>
-                        <textarea id="ingredients" required placeholder="• 2 tazas de harina&#10;• 1 cucharadita de sal&#10;• 3 huevos&#10;• 1/2 taza de leche"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="instructions">Instrucciones de Preparación</label>
-                        <textarea id="instructions" required placeholder="1. Precalentar el horno a 180°C&#10;2. Mezclar ingredientes secos..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="plating">Instrucciones de Emplatado</label>
-                        <textarea id="plating" placeholder="1. Colocar el platillo en el centro del plato&#10;2. Decorar con perejil fresco&#10;3. Añadir salsa alrededor del plato..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="add-btn">Agregar Receta</button>
-                </form>
+        <!-- Vista de Categorías -->
+        <div id="categoriesView" class="hidden">
+            <div class="categories-grid">
+                <div class="category-card" onclick="showDishes('Entradas Frías')">
+                    <h3>1. Entradas Frías</h3>
+                    <p>Aperitivos frescos y deliciosos</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Ceviches')">
+                    <h3>2. Ceviches</h3>
+                    <p>Pescados y mariscos frescos</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Carpaccios y Sashimis')">
+                    <h3>3. Carpaccios y Sashimis</h3>
+                    <p>Cortes finos y delicados</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Ensaladas de Mariscos')">
+                    <h3>4. Ensaladas de Mariscos</h3>
+                    <p>Mezclas frescas del mar</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Ostiones Depurados')">
+                    <h3>5. Ostiones Depurados</h3>
+                    <p>Ostiones frescos y limpios</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Entradas Calientes')">
+                    <h3>6. Entradas Calientes</h3>
+                    <p>Aperitivos calientes y sabrosos</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Sopas')">
+                    <h3>7. Sopas</h3>
+                    <p>Caldos y cremas reconfortantes</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Tacos')">
+                    <h3>8. Tacos</h3>
+                    <p>Tortillas rellenas de sabor</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Bifes de Pescado')">
+                    <h3>9. Bifes de Pescado</h3>
+                    <p>Filetes de pescado preparados</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Pulpos y Camarones')">
+                    <h3>10. Pulpos y Camarones</h3>
+                    <p>Especialidades del mar</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Otros Mariscos')">
+                    <h3>11. Otros Mariscos</h3>
+                    <p>Variedades de frutos del mar</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Carnes')">
+                    <h3>12. Carnes</h3>
+                    <p>Cortes de res, pollo y cerdo</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Platillos Típicos')">
+                    <h3>13. Platillos Típicos</h3>
+                    <p>Comida tradicional mexicana</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Platanitos y +')">
+                    <h3>14. Platanitos y +</h3>
+                    <p>Botanas y acompañamientos</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Solo para Peques')">
+                    <h3>15. Solo para Peques</h3>
+                    <p>Platillos especiales para niños</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Postres')">
+                    <h3>16. Postres</h3>
+                    <p>Dulces finales perfectos</p>
+                </div>
+                <div class="category-card" onclick="showDishes('Bebidas Calientes')">
+                    <h3>17. Bebidas Calientes</h3>
+                    <p>Cafés, tés y bebidas calientes</p>
+                </div>
             </div>
+        </div>
 
-            <div class="recipes-display">
-                <h2 style="margin-bottom: 25px; color: #333; font-weight: 700;">Recetas del Restaurante</h2>
-                
-                <div class="filter-section">
-                    <button class="filter-btn active" onclick="filterRecipes('all')">Todas</button>
-                    <button class="filter-btn" onclick="filterRecipes('Salsas y Extras')">Salsas y Extras</button>
-                    <button class="filter-btn" onclick="filterRecipes('platillos')">Platillos</button>
-                </div>
+        <!-- Vista de Platillos -->
+        <div id="dishesView" class="hidden">
+            <div class="dishes-grid" id="dishesGrid">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
 
-                <div id="recipesContainer">
-                    <div class="no-recipes">
-                        No hay recetas aún. ¡Agrega la primera receta para empezar!
-                    </div>
+        <!-- Vista de Salsas -->
+        <div id="saucesView" class="hidden">
+            <div class="dishes-grid">
+                <div class="dish-card" onclick="showRecipe('Salsa Verde Especial')">
+                    <h4>Salsa Verde Especial</h4>
+                    <p>Salsa base para varios platillos de mariscos</p>
                 </div>
+                <div class="dish-card" onclick="showRecipe('Aderezo de Apio')">
+                    <h4>Aderezo de Apio</h4>
+                    <p>Complemento cremoso con sabor fresco</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista de Receta -->
+        <div id="recipeView" class="hidden">
+            <div class="recipe-view" id="recipeContent">
+                <!-- Se llena dinámicamente -->
             </div>
         </div>
     </div>
 
     <script>
-        let recipes = [];
-        let recipeIdCounter = 1;
-        let currentFilter = 'all';
+        // Base de datos de platillos por categoría
+        const dishesData = {
+            'Entradas Frías': [
+                { name: 'Peto al Apio', description: 'Peto fresco con aderezo de apio y especias' },
+                { name: 'Tostada de Atún', description: 'Tostada crujiente con atún fresco' }
+            ],
+            'Ceviches': [
+                { name: 'Ceviche Mixto', description: 'Mezcla de pescado y mariscos frescos' },
+                { name: 'Ceviche de Pulpo', description: 'Pulpo tierno en jugo de limón' }
+            ],
+            'Tacos': [
+                { name: 'Tacos de Pescado', description: 'Tortillas suaves con pescado empanizado' },
+                { name: 'Tacos de Camarón', description: 'Camarones frescos en tortilla' }
+            ]
+        };
 
-        const dishCategories = [
-            'Entradas Frías', 'Ceviches', 'Carpaccios y Sashimis', 'Ensaladas de Mariscos',
-            'Ostiones Depurados', 'Entradas Calientes', 'Sopas', 'Tacos', 'Bifes de Pescado',
-            'Pulpos y Camarones', 'Otros Mariscos', 'Carnes', 'Platillos Típicos',
-            'Platanitos y +', 'Solo para Peques', 'Postres', 'Bebidas Calientes'
-        ];
+        // Base de datos de recetas
+        const recipesData = {
+            'Peto al Apio': {
+                name: 'Peto al Apio',
+                category: 'Entradas Frías',
+                servings: 4,
+                prepTime: 20,
+                ingredients: [
+                    '500g de peto fresco',
+                    '2 tallos de apio finamente picados',
+                    '1 cebolla morada pequeña',
+                    '3 limones (jugo)',
+                    '2 cucharadas de aceite de oliva',
+                    '1 cucharadita de sal',
+                    '1/2 cucharadita de pimienta',
+                    'Perejil fresco para decorar'
+                ],
+                instructions: [
+                    'Lavar y cortar el peto en cubos pequeños de 1cm',
+                    'Colocar el peto en un bowl y agregar el jugo de limón',
+                    'Dejar reposar 10 minutos para que el limón "cocine" el pescado',
+                    'Picar finamente el apio y la cebolla morada',
+                    'Mezclar el peto con el apio y cebolla',
+                    'Agregar aceite de oliva, sal y pimienta',
+                    'Refrigerar por 15 minutos antes de servir'
+                ],
+                plating: [
+                    'Servir en platos fríos individuales',
+                    'Colocar una porción generosa en el centro del plato',
+                    'Decorar con hojas de perejil fresco alrededor',
+                    'Acompañar con tostadas o crackers al lado',
+                    'Servir inmediatamente bien frío'
+                ]
+            }
+        };
 
-        function addRecipe(event) {
-            event.preventDefault();
-            
-            const recipe = {
-                id: recipeIdCounter++,
-                name: document.getElementById('recipeName').value,
-                category: document.getElementById('category').value,
-                servings: parseInt(document.getElementById('servings').value),
-                prepTime: parseInt(document.getElementById('prepTime').value),
-                ingredients: document.getElementById('ingredients').value,
-                instructions: document.getElementById('instructions').value,
-                plating: document.getElementById('plating').value,
-                createdAt: new Date().toLocaleDateString('es-MX')
-            };
-            
-            recipes.push(recipe);
-            displayRecipes();
-            updateStats();
-            document.getElementById('recipeForm').reset();
-        }
+        let currentView = 'main';
+        let currentCategory = '';
 
-        function deleteRecipe(id) {
-            recipes = recipes.filter(recipe => recipe.id !== id);
-            displayRecipes();
-            updateStats();
-        }
-
-        function filterRecipes(filter) {
-            currentFilter = filter;
+        function updateBreadcrumb() {
+            const breadcrumb = document.getElementById('breadcrumb');
+            let html = '<span class="clickable" onclick="showMainMenu()">Inicio</span>';
             
-            // Update filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            displayRecipes();
-        }
-
-        function displayRecipes() {
-            const container = document.getElementById('recipesContainer');
-            
-            let filteredRecipes = recipes;
-            if (currentFilter === 'Salsas y Extras') {
-                filteredRecipes = recipes.filter(recipe => recipe.category === 'Salsas y Extras');
-            } else if (currentFilter === 'platillos') {
-                filteredRecipes = recipes.filter(recipe => dishCategories.includes(recipe.category));
+            if (currentView === 'categories') {
+                html += ' <span class="separator">></span> <span>Categorías</span>';
+            } else if (currentView === 'dishes') {
+                html += ' <span class="separator">></span> <span class="clickable" onclick="showCategories()">Categorías</span>';
+                html += ' <span class="separator">></span> <span>' + currentCategory + '</span>';
+            } else if (currentView === 'recipe') {
+                html += ' <span class="separator">></span> <span class="clickable" onclick="showCategories()">Categorías</span>';
+                html += ' <span class="separator">></span> <span class="clickable" onclick="showDishes(\'' + currentCategory + '\')">' + currentCategory + '</span>';
+                html += ' <span class="separator">></span> <span>Receta</span>';
+            } else if (currentView === 'sauces') {
+                html += ' <span class="separator">></span> <span>Salsas y Extras</span>';
             }
             
-            if (filteredRecipes.length === 0) {
-                container.innerHTML = '<div class="no-recipes">No hay recetas en esta categoría.</div>';
+            breadcrumb.innerHTML = html;
+        }
+
+        function hideAllViews() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('categoriesView').classList.add('hidden');
+            document.getElementById('dishesView').classList.add('hidden');
+            document.getElementById('saucesView').classList.add('hidden');
+            document.getElementById('recipeView').classList.add('hidden');
+        }
+
+        function showMainMenu() {
+            hideAllViews();
+            document.getElementById('mainMenu').classList.remove('hidden');
+            currentView = 'main';
+            updateBreadcrumb();
+        }
+
+        function showCategories() {
+            hideAllViews();
+            document.getElementById('categoriesView').classList.remove('hidden');
+            currentView = 'categories';
+            updateBreadcrumb();
+        }
+
+        function showSauces() {
+            hideAllViews();
+            document.getElementById('saucesView').classList.remove('hidden');
+            currentView = 'sauces';
+            updateBreadcrumb();
+        }
+
+        function showDishes(category) {
+            hideAllViews();
+            currentCategory = category;
+            
+            const dishesGrid = document.getElementById('dishesGrid');
+            const dishes = dishesData[category] || [];
+            
+            if (dishes.length === 0) {
+                dishesGrid.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">No hay platillos disponibles en esta categoría aún.</p>';
+            } else {
+                dishesGrid.innerHTML = dishes.map(dish => `
+                    <div class="dish-card" onclick="showRecipe('${dish.name}')">
+                        <h4>${dish.name}</h4>
+                        <p>${dish.description}</p>
+                    </div>
+                `).join('');
+            }
+            
+            document.getElementById('dishesView').classList.remove('hidden');
+            currentView = 'dishes';
+            updateBreadcrumb();
+        }
+
+        function showRecipe(recipeName) {
+            hideAllViews();
+            const recipe = recipesData[recipeName];
+            
+            if (!recipe) {
+                document.getElementById('recipeContent').innerHTML = '<p style="text-align: center; color: #666;">Receta no encontrada</p>';
+                document.getElementById('recipeView').classList.remove('hidden');
                 return;
             }
-
-            // Group recipes by type
-            const sauces = filteredRecipes.filter(recipe => recipe.category === 'Salsas y Extras');
-            const dishes = filteredRecipes.filter(recipe => dishCategories.includes(recipe.category));
             
-            let html = '';
-            
-            if (sauces.length > 0 && (currentFilter === 'all' || currentFilter === 'Salsas y Extras')) {
-                html += '<div class="section-divider">🥄 SALSAS Y EXTRAS</div>';
-                html += sauces.map(recipe => createRecipeCard(recipe, true)).join('');
-            }
-            
-            if (dishes.length > 0 && (currentFilter === 'all' || currentFilter === 'platillos')) {
-                html += '<div class="section-divider">🍽️ PLATILLOS</div>';
-                html += dishes.map(recipe => createRecipeCard(recipe, false)).join('');
-            }
-            
-            container.innerHTML = html;
-        }
-
-        function createRecipeCard(recipe, isSauce) {
-            return `
-                <div class="recipe-card ${isSauce ? 'sauce-card' : ''}">
-                    <div class="recipe-header">
-                        <div>
-                            <div class="recipe-title">${recipe.name}</div>
-                            <div class="recipe-meta">
-                                <span>👥 ${recipe.servings} porciones</span>
-                                <span>⏱️ ${recipe.prepTime} min</span>
-                                <span>📅 ${recipe.createdAt}</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="recipe-category">${recipe.category}</span>
-                            <button class="delete-btn" onclick="deleteRecipe(${recipe.id})">Eliminar</button>
-                        </div>
+            document.getElementById('recipeContent').innerHTML = `
+                <button class="back-btn" onclick="showDishes('${currentCategory}')">← Volver</button>
+                
+                <h1 class="recipe-title">${recipe.name}</h1>
+                
+                <div class="recipe-meta">
+                    <span>👥 ${recipe.servings} porciones</span>
+                    <span>⏱️ ${recipe.prepTime} minutos</span>
+                    <span>📂 ${recipe.category}</span>
+                </div>
+                
+                <div class="recipe-section">
+                    <h3>🥘 Ingredientes</h3>
+                    <div class="ingredients-list">
+                        <ul>
+                            ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                        </ul>
                     </div>
-                    
-                    <div class="recipe-content">
-                        <h4>🥘 Ingredientes:</h4>
-                        <div class="ingredients-list">
-                            ${recipe.ingredients.split('\n').map(ingredient => 
-                                ingredient.trim() ? `<p>${ingredient}</p>` : ''
-                            ).join('')}
-                        </div>
-                        
-                        <h4>👨‍🍳 Preparación:</h4>
-                        <div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
-                            ${recipe.instructions.split('\n').map(instruction => 
-                                instruction.trim() ? `<p>${instruction}</p>` : ''
-                            ).join('')}
-                        </div>
-                        
-                        ${recipe.plating ? `
-                            <div class="plating-section">
-                                <h4>🎨 Emplatado:</h4>
-                                ${recipe.plating.split('\n').map(step => 
-                                    step.trim() ? `<p>${step}</p>` : ''
-                                ).join('')}
-                            </div>
-                        ` : ''}
+                </div>
+                
+                <div class="recipe-section">
+                    <h3>👨‍🍳 Preparación</h3>
+                    <div class="instructions-list">
+                        <ol>
+                            ${recipe.instructions.map(instruction => `<li>${instruction}</li>`).join('')}
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="plating-section">
+                    <h3>🎨 Emplatado</h3>
+                    <div class="instructions-list">
+                        <ol>
+                            ${recipe.plating.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
                     </div>
                 </div>
             `;
-        }
-
-        function updateStats() {
-            const totalRecipes = recipes.length;
-            const totalSauces = recipes.filter(recipe => recipe.category === 'Salsas y Extras').length;
-            const totalDishes = recipes.filter(recipe => dishCategories.includes(recipe.category)).length;
             
-            document.getElementById('totalRecipes').textContent = totalRecipes;
-            document.getElementById('totalSauces').textContent = totalSauces;
-            document.getElementById('totalDishes').textContent = totalDishes;
+            document.getElementById('recipeView').classList.remove('hidden');
+            currentView = 'recipe';
+            updateBreadcrumb();
         }
 
-        document.getElementById('recipeForm').addEventListener('submit', addRecipe);
-
-        // Initialize
-        updateStats();
+        // Inicializar
+        updateBreadcrumb();
     </script>
 </body>
 </html>
