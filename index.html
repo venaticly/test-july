@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Recetario del Restaurante</title>
     <style>
+        /* Logo fijo */
+        .logo-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 90px;
+            height: auto;
+            z-index: 1000;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -344,6 +354,9 @@
     </style>
 </head>
 <body>
+    <!-- Logo fijo -->
+    <img src="vrlogo.png" alt="Logo del restaurante" class="logo-fixed" />
+
     <div class="container">
         <div class="header">
             <h1>📖 Recetario del Restaurante</h1>
@@ -529,133 +542,4 @@
         let currentCategory = '';
 
         function updateBreadcrumb() {
-            const breadcrumb = document.getElementById('breadcrumb');
-            let html = '<span class="clickable" onclick="showMainMenu()">Inicio</span>';
-            
-            if (currentView === 'categories') {
-                html += ' <span class="separator">></span> <span>Categorías</span>';
-            } else if (currentView === 'dishes') {
-                html += ' <span class="separator">></span> <span class="clickable" onclick="showCategories()">Categorías</span>';
-                html += ' <span class="separator">></span> <span>' + currentCategory + '</span>';
-            } else if (currentView === 'recipe') {
-                html += ' <span class="separator">></span> <span class="clickable" onclick="showCategories()">Categorías</span>';
-                html += ' <span class="separator">></span> <span class="clickable" onclick="showDishes(\'' + currentCategory + '\')">' + currentCategory + '</span>';
-                html += ' <span class="separator">></span> <span>Receta</span>';
-            } else if (currentView === 'sauces') {
-                html += ' <span class="separator">></span> <span>Salsas y Extras</span>';
-            }
-            
-            breadcrumb.innerHTML = html;
-        }
-
-        function hideAllViews() {
-            document.getElementById('mainMenu').classList.add('hidden');
-            document.getElementById('categoriesView').classList.add('hidden');
-            document.getElementById('dishesView').classList.add('hidden');
-            document.getElementById('saucesView').classList.add('hidden');
-            document.getElementById('recipeView').classList.add('hidden');
-        }
-
-        function showMainMenu() {
-            hideAllViews();
-            document.getElementById('mainMenu').classList.remove('hidden');
-            currentView = 'main';
-            updateBreadcrumb();
-        }
-
-        function showCategories() {
-            hideAllViews();
-            document.getElementById('categoriesView').classList.remove('hidden');
-            currentView = 'categories';
-            updateBreadcrumb();
-        }
-
-        function showSauces() {
-            hideAllViews();
-            document.getElementById('saucesView').classList.remove('hidden');
-            currentView = 'sauces';
-            updateBreadcrumb();
-        }
-
-        function showDishes(category) {
-            hideAllViews();
-            currentCategory = category;
-            
-            const dishesGrid = document.getElementById('dishesGrid');
-            const dishes = dishesData[category] || [];
-            
-            if (dishes.length === 0) {
-                dishesGrid.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">No hay platillos disponibles en esta categoría aún.</p>';
-            } else {
-                dishesGrid.innerHTML = dishes.map(dish => `
-                    <div class="dish-card" onclick="showRecipe('${dish.name}')">
-                        <h4>${dish.name}</h4>
-                        <p>${dish.description}</p>
-                    </div>
-                `).join('');
-            }
-            
-            document.getElementById('dishesView').classList.remove('hidden');
-            currentView = 'dishes';
-            updateBreadcrumb();
-        }
-
-        function showRecipe(recipeName) {
-            hideAllViews();
-            const recipe = recipesData[recipeName];
-            
-            if (!recipe) {
-                document.getElementById('recipeContent').innerHTML = '<p style="text-align: center; color: #666;">Receta no encontrada</p>';
-                document.getElementById('recipeView').classList.remove('hidden');
-                return;
-            }
-            
-            document.getElementById('recipeContent').innerHTML = `
-                <button class="back-btn" onclick="showDishes('${currentCategory}')">← Volver</button>
-                
-                <h1 class="recipe-title">${recipe.name}</h1>
-                
-                <div class="recipe-meta">
-                    <span>👥 ${recipe.servings} porciones</span>
-                    <span>⏱️ ${recipe.prepTime} minutos</span>
-                    <span>📂 ${recipe.category}</span>
-                </div>
-                
-                <div class="recipe-section">
-                    <h3>🥘 Ingredientes</h3>
-                    <div class="ingredients-list">
-                        <ul>
-                            ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="recipe-section">
-                    <h3>👨‍🍳 Preparación</h3>
-                    <div class="instructions-list">
-                        <ol>
-                            ${recipe.instructions.map(instruction => `<li>${instruction}</li>`).join('')}
-                        </ol>
-                    </div>
-                </div>
-                
-                <div class="plating-section">
-                    <h3>🎨 Emplatado</h3>
-                    <div class="instructions-list">
-                        <ol>
-                            ${recipe.plating.map(step => `<li>${step}</li>`).join('')}
-                        </ol>
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('recipeView').classList.remove('hidden');
-            currentView = 'recipe';
-            updateBreadcrumb();
-        }
-
-        // Inicializar
-        updateBreadcrumb();
-    </script>
-</body>
-</html>
+            const breadcrumb = document
