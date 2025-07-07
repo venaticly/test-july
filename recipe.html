@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Recipe Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .recipe-form {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: 100%;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .recipes-display {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .recipe-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .recipe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .recipe-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .recipe-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .recipe-meta span {
+            background: white;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-weight: 500;
+        }
+
+        .recipe-category {
+            background: #667eea !important;
+            color: white !important;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .recipe-content {
+            margin-top: 15px;
+        }
+
+        .recipe-content h4 {
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .recipe-content p {
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .ingredients-list {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s ease;
+        }
+
+        .delete-btn:hover {
+            background: #c82333;
+        }
+
+        .no-recipes {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            padding: 40px 0;
+        }
+
+        .stats-bar {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍽️ Restaurant Recipe Manager</h1>
+            <p>Organize your kitchen's culinary masterpieces</p>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number" id="totalRecipes">0</div>
+                <div class="stat-label">Total Recipes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="avgPrepTime">0</div>
+                <div class="stat-label">Avg Prep Time</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalCategories">0</div>
+                <div class="stat-label">Categories</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="recipe-form">
+                <h2 style="margin-bottom: 25px; color: #333; font-weight: 700;">Add New Recipe</h2>
+                <form id="recipeForm">
+                    <div class="form-group">
+                        <label for="recipeName">Recipe Name</label>
+                        <input type="text" id="recipeName" required placeholder="e.g., Truffle Pasta">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="">Select Category</option>
+                                <option value="Appetizers">Appetizers</option>
+                                <option value="Main Course">Main Course</option>
+                                <option value="Desserts">Desserts</option>
+                                <option value="Beverages">Beverages</option>
+                                <option value="Sides">Sides</option>
+                                <option value="Soups">Soups</option>
+                                <option value="Salads">Salads</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="servings">Servings</label>
+                            <input type="number" id="servings" required min="1" placeholder="4">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prepTime">Prep Time (minutes)</label>
+                            <input type="number" id="prepTime" required min="1" placeholder="15">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cookTime">Cook Time (minutes)</label>
+                            <input type="number" id="cookTime" required min="1" placeholder="30">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ingredients">Ingredients</label>
+                        <textarea id="ingredients" required placeholder="• 2 cups flour&#10;• 1 tsp salt&#10;• 3 eggs&#10;• 1/2 cup milk"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="instructions">Instructions</label>
+                        <textarea id="instructions" required placeholder="1. Preheat oven to 350°F&#10;2. Mix dry ingredients..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="add-btn">Add Recipe</button>
+                </form>
+            </div>
+
+            <div class="recipes-display">
+                <h2 style="margin-bottom: 25px; color: #333; font-weight: 700;">Recipe Collection</h2>
+                <div id="recipesContainer">
+                    <div class="no-recipes">
+                        No recipes yet. Add your first recipe to get started!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let recipes = [];
+        let recipeIdCounter = 1;
+
+        function addRecipe(event) {
+            event.preventDefault();
+            
+            const recipe = {
+                id: recipeIdCounter++,
+                name: document.getElementById('recipeName').value,
+                category: document.getElementById('category').value,
+                servings: parseInt(document.getElementById('servings').value),
+                prepTime: parseInt(document.getElementById('prepTime').value),
+                cookTime: parseInt(document.getElementById('cookTime').value),
+                ingredients: document.getElementById('ingredients').value,
+                instructions: document.getElementById('instructions').value,
+                createdAt: new Date().toLocaleDateString()
+            };
+            
+            recipes.push(recipe);
+            displayRecipes();
+            updateStats();
+            document.getElementById('recipeForm').reset();
+        }
+
+        function deleteRecipe(id) {
+            recipes = recipes.filter(recipe => recipe.id !== id);
+            displayRecipes();
+            updateStats();
+        }
+
+        function displayRecipes() {
+            const container = document.getElementById('recipesContainer');
+            
+            if (recipes.length === 0) {
+                container.innerHTML = '<div class="no-recipes">No recipes yet. Add your first recipe to get started!</div>';
+                return;
+            }
+            
+            container.innerHTML = recipes.map(recipe => `
+                <div class="recipe-card">
+                    <div class="recipe-header">
+                        <div>
+                            <div class="recipe-title">${recipe.name}</div>
+                            <div class="recipe-meta">
+                                <span>👥 ${recipe.servings} servings</span>
+                                <span>⏱️ ${recipe.prepTime + recipe.cookTime} min total</span>
+                                <span>📅 ${recipe.createdAt}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="recipe-category">${recipe.category}</span>
+                            <button class="delete-btn" onclick="deleteRecipe(${recipe.id})">Delete</button>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-content">
+                        <h4>🥘 Ingredients:</h4>
+                        <div class="ingredients-list">
+                            ${recipe.ingredients.split('\n').map(ingredient => 
+                                ingredient.trim() ? `<p>${ingredient}</p>` : ''
+                            ).join('')}
+                        </div>
+                        
+                        <h4>👨‍🍳 Instructions:</h4>
+                        <div style="background: white; padding: 15px; border-radius: 10px; margin-top: 10px;">
+                            ${recipe.instructions.split('\n').map(instruction => 
+                                instruction.trim() ? `<p>${instruction}</p>` : ''
+                            ).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats() {
+            const totalRecipes = recipes.length;
+            const avgPrepTime = totalRecipes > 0 ? 
+                Math.round(recipes.reduce((sum, recipe) => sum + recipe.prepTime + recipe.cookTime, 0) / totalRecipes) : 0;
+            const totalCategories = new Set(recipes.map(recipe => recipe.category)).size;
+            
+            document.getElementById('totalRecipes').textContent = totalRecipes;
+            document.getElementById('avgPrepTime').textContent = avgPrepTime + 'm';
+            document.getElementById('totalCategories').textContent = totalCategories;
+        }
+
+        document.getElementById('recipeForm').addEventListener('submit', addRecipe);
+
+        // Initialize stats
+        updateStats();
+    </script>
+</body>
+</html>
